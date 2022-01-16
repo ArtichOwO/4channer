@@ -36,7 +36,12 @@ struct BoardDetail: View {
                 }
             }()) { page in
                 List(page.threads) { thread in
-                    ThreadRow(board: board, thread: thread)
+                    NavigationLink(destination: ThreadDetail(
+                        board: board,
+                        threadno: thread.no
+                    )) {
+                        ThreadRow(board: board, thread: thread)
+                    }
                 }
             }
         }

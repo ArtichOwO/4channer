@@ -39,6 +39,7 @@ struct ThreadRow: View {
                         image
                             .resizable()
                             .aspectRatio(contentMode: ContentMode.fit)
+                            .padding(/*@START_MENU_TOKEN@*/.top/*@END_MENU_TOKEN@*/)
                     } placeholder: {
                         ProgressView()
                             .frame(
@@ -49,10 +50,12 @@ struct ThreadRow: View {
                 }
                 
                 htmlToText(thread.com ?? "")
-                    .padding(.bottom)
+                    .padding(.top)
                 
-                Text("\(thread.replies) replies")
-                    .fontWeight(.thin)
+                if let replies = thread.replies {
+                    Text("\(replies) replies")
+                        .fontWeight(.thin)
+                }
             }
         }
         .padding(.bottom)
