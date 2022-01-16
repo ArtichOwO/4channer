@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BoardRow: View {
-    var board : Board
+    let board : Board
     
     var body: some View {
         VStack(alignment: .leading) {

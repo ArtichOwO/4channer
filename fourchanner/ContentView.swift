@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    var boards: [Board]
+    let boards: [Board]
     
     var body: some View {
         NavigationView {

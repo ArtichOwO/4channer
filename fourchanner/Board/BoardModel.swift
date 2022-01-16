@@ -8,11 +8,11 @@
 import Foundation
 
 struct Board: Hashable, Codable {
-    var board : String
-    var title : String
-    var meta_description : String
+    let board : String
+    let title : String
+    let meta_description : String
 }
 
 struct BoardList: Hashable, Codable {
-    var boards : [Board]
+    let boards : [Board]
 }
