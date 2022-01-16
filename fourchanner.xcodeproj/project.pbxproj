@@ -12,6 +12,7 @@
 		F7FD933527938D12009B284E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD933427938D12009B284E /* Assets.xcassets */; };
 		F7FD933827938D12009B284E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD933727938D12009B284E /* Preview Assets.xcassets */; };
 		F7FD934227939514009B284E /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD934127939514009B284E /* BoardModel.swift */; };
+		F7FD934427939A66009B284E /* BoardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD934327939A66009B284E /* BoardRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		F7FD933E27938D56009B284E /* fourchanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fourchanner.entitlements; sourceTree = "<group>"; };
 		F7FD933F279390BB009B284E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F7FD934127939514009B284E /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		F7FD934327939A66009B284E /* BoardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				F7FD934127939514009B284E /* BoardModel.swift */,
+				F7FD934327939A66009B284E /* BoardRow.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7FD934227939514009B284E /* BoardModel.swift in Sources */,
+				F7FD934427939A66009B284E /* BoardRow.swift in Sources */,
 				F7FD933327938D0F009B284E /* ContentView.swift in Sources */,
 				F7FD933127938D0F009B284E /* fourchannerApp.swift in Sources */,
 			);

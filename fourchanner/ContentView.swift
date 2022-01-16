@@ -13,8 +13,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(boards, id: \.self) { board in
-                NavigationLink(destination: Text(board.title)) {
-                    Text(board.board)
+                NavigationLink(destination: Text(board.title).navigationBarTitle(board.board, displayMode: .inline)) {
+                    BoardRow(board: board)
                 }
             }
             
