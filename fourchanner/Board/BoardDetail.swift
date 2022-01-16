@@ -33,36 +33,7 @@ struct BoardDetail: View {
                 }
             }()) { page in
                 List(page.threads) { thread in
-                    VStack(alignment: .leading) {
-                        HStack {
-                            if ((thread.sticky ?? 0) != 0) {
-                                Image(systemName: "pin.circle.fill")
-                                    .foregroundColor(Color.green)
-                            }
-                            Text(verbatim: "\(thread.no)")
-                                .fontWeight(.light)
-                            Text(thread.name ?? "[NO NAME]")
-                        }
-                        
-                        Text((thread.sub ?? "").replacingOccurrences(of: "&amp;", with: "&"))
-                            .fontWeight(.heavy)
-                        
-                        HStack {
-                            if ((thread.tim ?? -1) > 0) {
-                                AsyncImage(url: URL(string: "https://i.4cdn.org/\(board.board)/\(thread.tim!)s.jpg")) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: ContentMode.fit)
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                            }
-                            
-                            Text(thread.com ?? "")
-                                .frame(maxHeight: 100)
-                                .truncationMode(.tail)
-                        }
-                    }
+                    ThreadRow(board: board, thread: thread)
                 }
             }
         }
