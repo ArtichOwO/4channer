@@ -11,6 +11,7 @@
 		F7FD933327938D0F009B284E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD933227938D0F009B284E /* ContentView.swift */; };
 		F7FD933527938D12009B284E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD933427938D12009B284E /* Assets.xcassets */; };
 		F7FD933827938D12009B284E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD933727938D12009B284E /* Preview Assets.xcassets */; };
+		F7FD934227939514009B284E /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD934127939514009B284E /* BoardModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		F7FD933727938D12009B284E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F7FD933E27938D56009B284E /* fourchanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fourchanner.entitlements; sourceTree = "<group>"; };
 		F7FD933F279390BB009B284E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F7FD934127939514009B284E /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		F7FD932F27938D0F009B284E /* fourchanner */ = {
 			isa = PBXGroup;
 			children = (
+				F7FD934027939503009B284E /* Board */,
 				F7FD933F279390BB009B284E /* Info.plist */,
 				F7FD933E27938D56009B284E /* fourchanner.entitlements */,
 				F7FD933027938D0F009B284E /* fourchannerApp.swift */,
@@ -69,6 +72,14 @@
 				F7FD933727938D12009B284E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F7FD934027939503009B284E /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				F7FD934127939514009B284E /* BoardModel.swift */,
+			);
+			path = Board;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7FD934227939514009B284E /* BoardModel.swift in Sources */,
 				F7FD933327938D0F009B284E /* ContentView.swift in Sources */,
 				F7FD933127938D0F009B284E /* fourchannerApp.swift in Sources */,
 			);

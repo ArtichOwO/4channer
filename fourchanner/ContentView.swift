@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    var boards: [Board]
+    
     var body: some View {
         NavigationView {
             Text("hey")
@@ -27,6 +29,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(boards: [Board(board: "p", title: "Preview", meta_description: "A preview board")])
     }
 }
