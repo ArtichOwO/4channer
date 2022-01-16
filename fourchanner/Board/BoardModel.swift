@@ -32,6 +32,7 @@ struct Thread: Hashable, Codable, Identifiable {
     let replies : Int?
     let ext : String?
     let capcode : String?
+    let resto : Int
 }
 
 struct Page: Hashable, Codable, Identifiable {

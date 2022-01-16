@@ -28,7 +28,8 @@ struct BoardDetail: View {
                             tim: nil,
                             replies: 123456,
                             ext: nil,
-                            capcode: nil
+                            capcode: nil,
+                            resto: 0
                         )]
                     )]
                 } catch {

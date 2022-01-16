@@ -60,6 +60,31 @@ struct ThreadRow: View {
             }
         }
         .padding(.bottom)
+        .contextMenu {
+            Button(action: { ShareSheetURL("https://boards.4channel.org/\(board.board)/thread/\(thread.resto == 0 ? thread.no : thread.resto)#p\(thread.no)")
+            }, label: {
+                Label("Share post", systemImage: "square.and.arrow.up")
+            })
+            
+            if (thread.tim != nil) {
+                Button(action: {
+                    UIImageWriteToSavedPhotosAlbum(
+                        UIImage(data: try! Data(contentsOf: URL(string: "https://i.4cdn.org/\(board.board)/\(thread.tim!)\(thread.ext!)")!))!,
+                        nil, nil, nil)
+                }, label: {
+                    Label("Download image", systemImage: "square.and.arrow.down")
+                })
+            }
+        }
+    }
+    
+    private func ShareSheetURL(_ url: String) {
+        let av = UIActivityViewController(
+            activityItems: [URL(string: url)!],
+            applicationActivities: nil
+        )
+        
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
 }
 
@@ -78,7 +103,8 @@ struct ThreadRow_Previews: PreviewProvider {
                         tim: 1546293948883,
                         replies: 123456,
                         ext: nil,
-                        capcode: nil
+                        capcode: nil,
+                        resto: 0
                     )
         )
     }
