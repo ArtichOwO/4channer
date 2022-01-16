@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WrappingHStack
 
 struct ThreadRow: View {
     let board : Board
@@ -13,18 +14,20 @@ struct ThreadRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
+            WrappingHStack {
                 if ((thread.sticky ?? 0) != 0) {
                     Image(systemName: "pin.circle.fill")
                         .foregroundColor(Color.green)
                 }
+                
+                if (thread.capcode != nil) {
+                    Image(systemName: "leaf.circle")
+                        .foregroundColor(Color.red)
+                }
+                
                 Text(verbatim: "\(thread.no)")
                     .fontWeight(.light)
                 Text(thread.name ?? "[NO NAME]")
-                if (thread.capcode != nil) {
-                    Text("[\(thread.capcode!)]")
-                        .foregroundColor(Color.red)
-                }
             }
             
             Text((thread.sub ?? "").replacingOccurrences(of: "&amp;", with: "&"))
@@ -46,6 +49,7 @@ struct ThreadRow: View {
                 }
                 
                 htmlToText(thread.com ?? "")
+                    .padding(.bottom)
                 
                 Text("\(thread.replies) replies")
                     .fontWeight(.thin)
