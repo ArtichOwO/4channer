@@ -55,6 +55,7 @@ struct ThreadRow: View {
                 if let replies = thread.replies {
                     Text("\(replies) replies")
                         .fontWeight(.thin)
+                        .padding(.top)
                 }
             }
         }
