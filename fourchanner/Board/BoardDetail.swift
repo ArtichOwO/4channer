@@ -40,11 +40,12 @@ struct BoardDetail: View {
                                     .foregroundColor(Color.green)
                             }
                             Text(verbatim: "\(thread.no)")
+                                .fontWeight(.light)
                             Text(thread.name ?? "[NO NAME]")
-                                .fontWeight(.bold)
                         }
                         
-                        Text(thread.sub ?? "")
+                        Text((thread.sub ?? "").replacingOccurrences(of: "&amp;", with: "&"))
+                            .fontWeight(.heavy)
                         
                         HStack {
                             if ((thread.tim ?? -1) > 0) {
@@ -72,7 +73,7 @@ struct BoardDetail: View {
             maxHeight: .infinity
         )
         .tabViewStyle(PageTabViewStyle())
-        .navigationBarTitle("/\(board.board)/", displayMode: .inline)
+        .navigationBarTitle("/\(board.board)/ - \(board.title)", displayMode: .inline)
     }
 }
 
