@@ -12,7 +12,11 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            Text("hey")
+            List(boards, id: \.self) { board in
+                NavigationLink(destination: Text(board.title)) {
+                    Text(board.board)
+                }
+            }
             
             .navigationBarTitle("4channer")
             .navigationBarItems(trailing:
