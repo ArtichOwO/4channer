@@ -18,3 +18,17 @@ struct Board: Hashable, Codable, Identifiable {
 struct BoardList: Hashable, Codable {
     let boards : [Board]
 }
+
+struct Thread: Hashable, Codable, Identifiable {
+    let id = UUID()
+    
+    let no : Int
+    let now : String
+}
+
+struct Page: Hashable, Codable, Identifiable {
+    let id = UUID()
+    
+    let page : Int
+    let threads : [Thread]
+}
