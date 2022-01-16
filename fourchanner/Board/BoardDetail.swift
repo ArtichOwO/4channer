@@ -15,14 +15,53 @@ struct BoardDetail: View {
             ForEach({ () -> [Page] in
                 do {
                     return try load("https://a.4cdn.org/\(board.board)/catalog.json")
-                } catch fourchannerError.URLNotFound {
-                    return [Page(page: 404, threads: [Thread(no: 69, now: "00/00/00(---)00:00:00")])]
+                } catch fourchannerError.URLNotFound(let url) {
+                    return [Page(
+                        page: 404,
+                        threads: [Thread(
+                            no: 69,
+                            now: "00/00/00(---)00:00:00",
+                            sticky: 1,
+                            name: "Oops",
+                            sub: "URL \(url) not found :))",
+                            com: "",
+                            tim: nil
+                        )]
+                    )]
                 } catch {
                     fatalError()
                 }
             }()) { page in
                 List(page.threads) { thread in
-                    Text(verbatim: "\(thread.no): \(thread.now)")
+                    VStack(alignment: .leading) {
+                        HStack {
+                            if ((thread.sticky ?? 0) != 0) {
+                                Image(systemName: "pin.circle.fill")
+                                    .foregroundColor(Color.green)
+                            }
+                            Text(verbatim: "\(thread.no)")
+                            Text(thread.name ?? "[NO NAME]")
+                                .fontWeight(.bold)
+                        }
+                        
+                        Text(thread.sub ?? "")
+                        
+                        HStack {
+                            if ((thread.tim ?? -1) > 0) {
+                                AsyncImage(url: URL(string: "https://i.4cdn.org/\(board.board)/\(thread.tim!)s.jpg")) { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: ContentMode.fit)
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                            }
+                            
+                            Text(thread.com ?? "")
+                                .frame(maxHeight: 100)
+                                .truncationMode(.tail)
+                        }
+                    }
                 }
             }
         }

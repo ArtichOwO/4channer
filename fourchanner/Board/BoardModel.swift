@@ -24,6 +24,11 @@ struct Thread: Hashable, Codable, Identifiable {
     
     let no : Int
     let now : String
+    let sticky : Int?
+    let name : String?
+    let sub : String?
+    let com : String?
+    let tim : Int?
 }
 
 struct Page: Hashable, Codable, Identifiable {
