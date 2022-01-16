@@ -5,6 +5,7 @@
 //  Created by Artichaut on 16/01/2022.
 //
 
+import SwiftSoup
 import SwiftUI
 
 @main
@@ -50,5 +51,16 @@ func load<T: Decodable>(_ url: String) throws -> T {
     } catch {
         print(error)
         fatalError(error.localizedDescription)
+    }
+}
+
+func htmlToText(_ html: String) -> Text {
+    do {
+       let doc: Document = try SwiftSoup.parse(html)
+       return Text(try doc.text())
+    } catch Exception.Error(let _, let message) {
+        return Text(message)
+    } catch {
+        return Text("error")
     }
 }

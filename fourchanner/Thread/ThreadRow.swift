@@ -26,7 +26,7 @@ struct ThreadRow: View {
             Text((thread.sub ?? "").replacingOccurrences(of: "&amp;", with: "&"))
                 .fontWeight(.heavy)
             
-            HStack {
+            VStack {
                 if ((thread.tim ?? -1) > 0) {
                     AsyncImage(url: URL(string: "https://i.4cdn.org/\(board.board)/\(thread.tim!)s.jpg")) { image in
                         image
@@ -37,11 +37,10 @@ struct ThreadRow: View {
                     }
                 }
                 
-                Text(thread.com ?? "")
-                    .frame(maxHeight: 100)
-                    .truncationMode(.tail)
+                htmlToText(thread.com ?? "")
             }
         }
+        .padding(.bottom)
     }
 }
 
@@ -57,7 +56,7 @@ struct ThreadRow_Previews: PreviewProvider {
                         name: "Anonymous",
                         sub: "Preview",
                         com: "A preview thread",
-                        tim: nil
+                        tim: 1546293948883
                     )
         )
     }
