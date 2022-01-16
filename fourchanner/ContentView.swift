@@ -24,7 +24,7 @@ struct ContentView: View {
                     ForEach(0..<4) { _ in
                         Image(systemName: "leaf")
                             .foregroundColor(Color.green)
-                            .imageScale(/*@START_MENU_TOKEN@*/.small/*@END_MENU_TOKEN@*/)
+                            .imageScale(.small)
                     }
                 }
             )
