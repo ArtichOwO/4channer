@@ -56,8 +56,8 @@ func load<T: Decodable>(_ url: String) throws -> T {
 
 func htmlToText(_ html: String) -> Text {
     do {
-       let doc: Document = try SwiftSoup.parse(html)
-       return Text(try doc.text())
+        let doc: Document = try SwiftSoup.parse(html.replacingOccurrences(of: "<br>", with: "/{newline}/"))
+        return Text(try doc.text().replacingOccurrences(of: "/{newline}/", with: "\n"))
     } catch Exception.Error(let _, let message) {
         return Text(message)
     } catch {

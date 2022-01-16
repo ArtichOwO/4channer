@@ -29,6 +29,9 @@ struct Thread: Hashable, Codable, Identifiable {
     let sub : String?
     let com : String?
     let tim : Int?
+    let replies : Int
+    let ext : String?
+    let capcode : String?
 }
 
 struct Page: Hashable, Codable, Identifiable {

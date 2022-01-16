@@ -25,7 +25,10 @@ struct BoardDetail: View {
                             name: "Oops",
                             sub: "URL \(url) not found :))",
                             com: "",
-                            tim: nil
+                            tim: nil,
+                            replies: 123456,
+                            ext: nil,
+                            capcode: nil
                         )]
                     )]
                 } catch {

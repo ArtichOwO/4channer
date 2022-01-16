@@ -21,23 +21,34 @@ struct ThreadRow: View {
                 Text(verbatim: "\(thread.no)")
                     .fontWeight(.light)
                 Text(thread.name ?? "[NO NAME]")
+                if (thread.capcode != nil) {
+                    Text("[\(thread.capcode!)]")
+                        .foregroundColor(Color.red)
+                }
             }
             
             Text((thread.sub ?? "").replacingOccurrences(of: "&amp;", with: "&"))
                 .fontWeight(.heavy)
             
             VStack {
-                if ((thread.tim ?? -1) > 0) {
-                    AsyncImage(url: URL(string: "https://i.4cdn.org/\(board.board)/\(thread.tim!)s.jpg")) { image in
+                if (((thread.tim ?? -1) > 0) && thread.ext != nil) {
+                    AsyncImage(url: URL(string: "https://i.4cdn.org/\(board.board)/\(thread.tim!)\(thread.ext!)")) { image in
                         image
                             .resizable()
                             .aspectRatio(contentMode: ContentMode.fit)
                     } placeholder: {
                         ProgressView()
+                            .frame(
+                                width: 30,
+                                height: 30
+                            )
                     }
                 }
                 
                 htmlToText(thread.com ?? "")
+                
+                Text("\(thread.replies) replies")
+                    .fontWeight(.thin)
             }
         }
         .padding(.bottom)
@@ -56,7 +67,10 @@ struct ThreadRow_Previews: PreviewProvider {
                         name: "Anonymous",
                         sub: "Preview",
                         com: "A preview thread",
-                        tim: 1546293948883
+                        tim: 1546293948883,
+                        replies: 123456,
+                        ext: nil,
+                        capcode: nil
                     )
         )
     }
