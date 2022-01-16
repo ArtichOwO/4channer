@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct Board: Hashable, Codable {
+struct Board: Hashable, Codable, Identifiable {
+    let id = UUID()
+    
     let board : String
     let title : String
     let meta_description : String

@@ -30,7 +30,7 @@ enum fourchannerError: Error {
 }
 
 func load<T: Decodable>(_ url: String) throws -> T {
-    NSLog("Fetching \(url)")
+    print("Fetching \(url)")
     
     var json_data : Data
     if let urlData = URL(string: url) {
@@ -45,7 +45,7 @@ func load<T: Decodable>(_ url: String) throws -> T {
     }
     
     do {
-        NSLog("Done fetching \(url)")
+        print("Done fetching \(url)")
         return try JSONDecoder().decode(T.self, from: json_data)
     } catch {
         print(error)

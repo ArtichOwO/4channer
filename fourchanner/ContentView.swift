@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(boards, id: \.self) { board in
+            List(boards) { board in
                 NavigationLink(destination: Text(board.title).navigationBarTitle(board.board, displayMode: .inline)) {
                     BoardRow(board: board)
                 }
