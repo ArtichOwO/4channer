@@ -12,7 +12,7 @@ struct Board: Hashable, Codable, Identifiable {
     
     let board : String
     let title : String
-    let meta_description : String
+    var meta_description : String
 }
 
 struct BoardList: Hashable, Codable {
@@ -26,7 +26,7 @@ struct Thread: Hashable, Codable, Identifiable {
     let now : String
     let sticky : Int?
     let name : String?
-    let sub : String?
+    var sub : String?
     let com : String?
     let tim : Int?
     let replies : Int?
@@ -39,5 +39,5 @@ struct Page: Hashable, Codable, Identifiable {
     let id = UUID()
     
     let page : Int
-    let threads : [Thread]
+    var threads : [Thread]
 }

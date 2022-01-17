@@ -15,11 +15,21 @@ struct fourchannerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(boards: {
+                var errorBoard = Board(
+                    board: "err",
+                    title: "Error",
+                    meta_description: ""
+                )
+                
                 do {
                     let boards : BoardList = try load("https://a.4cdn.org/boards.json")
                     return boards.boards
                 } catch fourchannerError.URLNotFound(let url) {
-                    return [Board(board: "error", title: "URL not found :(", meta_description: "URL \(url) not found")]
+                    errorBoard.meta_description = "URL \(url) not found"
+                    return [errorBoard]
+                } catch fourchannerError.DataNotRetrieved(let url) {
+                    errorBoard.meta_description = "Couldn't retrieve data from \(url)"
+                    return [errorBoard]
                 } catch {
                     fatalError()
                 }
@@ -30,6 +40,7 @@ struct fourchannerApp: App {
 
 enum fourchannerError: Error {
     case URLNotFound(String)
+    case DataNotRetrieved(String)
 }
 
 func load<T: Decodable>(_ url: String) throws -> T {
@@ -40,8 +51,7 @@ func load<T: Decodable>(_ url: String) throws -> T {
         do {
             json_data = try Data(contentsOf: urlData)
         } catch {
-            print(error)
-            fatalError(error.localizedDescription)
+            throw fourchannerError.DataNotRetrieved(url)
         }
     } else {
         throw fourchannerError.URLNotFound(url)

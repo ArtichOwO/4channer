@@ -13,25 +13,31 @@ struct BoardDetail: View {
     var body: some View {
         TabView {
             ForEach({ () -> [Page] in
+                var errorPage = Page(
+                    page: 0,
+                    threads: [Thread(
+                        no: 404,
+                        now: "00/00/00(---)00:00:00",
+                        sticky: 1,
+                        name: "Oops",
+                        sub: nil,
+                        com: nil,
+                        tim: nil,
+                        replies: 123456,
+                        ext: nil,
+                        capcode: "",
+                        resto: 0
+                    )]
+                )
+                
                 do {
                     return try load("https://a.4cdn.org/\(board.board)/catalog.json")
                 } catch fourchannerError.URLNotFound(let url) {
-                    return [Page(
-                        page: 404,
-                        threads: [Thread(
-                            no: 69,
-                            now: "00/00/00(---)00:00:00",
-                            sticky: 1,
-                            name: "Oops",
-                            sub: "URL \(url) not found :))",
-                            com: "",
-                            tim: nil,
-                            replies: 123456,
-                            ext: nil,
-                            capcode: nil,
-                            resto: 0
-                        )]
-                    )]
+                    errorPage.threads[0].sub = "URL \(url) not found :))"
+                    return [errorPage]
+                } catch fourchannerError.DataNotRetrieved(let url) {
+                    errorPage.threads[0].sub = "Couldn't retrieve data from \(url)"
+                    return [errorPage]
                 } catch {
                     fatalError()
                 }

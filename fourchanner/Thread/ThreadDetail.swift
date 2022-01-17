@@ -14,23 +14,29 @@ struct ThreadDetail: View {
     var body: some View {
         List {
             ForEach ({ () -> [Thread] in
+                var errorThread = Thread(
+                    no: 404,
+                    now: "00/00/00(---)00:00:00",
+                    sticky: 1,
+                    name: "Oops",
+                    sub: nil,
+                    com: nil,
+                    tim: nil,
+                    replies: 123456,
+                    ext: nil,
+                    capcode: "",
+                    resto: 0
+                )
+                
                 do {
                     let posts : PostList =  try load("https://a.4cdn.org/\(board.board)/thread/\(threadno).json")
                     return posts.posts
                 } catch fourchannerError.URLNotFound(let url) {
-                    return [Thread(
-                        no: 69,
-                        now: "00/00/00(---)00:00:00",
-                        sticky: 1,
-                        name: "Oops",
-                        sub: "URL \(url) not found :))",
-                        com: "",
-                        tim: nil,
-                        replies: 123456,
-                        ext: nil,
-                        capcode: nil,
-                        resto: 0
-                    )]
+                    errorThread.sub = "URL \(url) not found :))"
+                    return [errorThread]
+                } catch fourchannerError.DataNotRetrieved(let url) {
+                    errorThread.sub = "Couldn't retrieve data from \(url)"
+                    return [errorThread]
                 } catch {
                     fatalError()
                 }
