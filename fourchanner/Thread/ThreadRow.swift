@@ -30,7 +30,7 @@ struct ThreadRow: View {
                 Text(thread.name ?? "[NO NAME]")
             }
             
-            Text((thread.sub ?? "").replacingOccurrences(of: "&amp;", with: "&"))
+            htmlToText(thread.sub ?? "")
                 .fontWeight(.heavy)
             
             VStack {

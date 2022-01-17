@@ -17,7 +17,7 @@ struct BoardRow: View {
                     .fontWeight(.bold)
             }
             
-            Text(board.meta_description.replacingOccurrences(of: "&quot;", with: "\"").replacingOccurrences(of: "&amp;", with: "&"))
+            htmlToText(board.meta_description)
                 .fontWeight(.thin)
         }
         .padding(.vertical)
