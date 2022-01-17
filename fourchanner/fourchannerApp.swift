@@ -8,6 +8,8 @@
 import SwiftSoup
 import SwiftUI
 
+let defaults = UserDefaults.standard
+
 @main
 struct fourchannerApp: App {
     var body: some Scene {
@@ -62,5 +64,23 @@ func htmlToText(_ html: String) -> Text {
         return Text(message)
     } catch {
         return Text("error")
+    }
+}
+
+func saveStringArrayUserSetting(_ array: [String]) -> Data {
+    do {
+        return try JSONEncoder().encode(array)
+    } catch {
+        print(error)
+        fatalError(error.localizedDescription)
+    }
+}
+
+func loadStringArrayUserSetting(_ data: Data) -> [String] {
+    do {
+        return try JSONDecoder().decode([String].self, from: data)
+    } catch {
+        print(error)
+        fatalError(error.localizedDescription)
     }
 }

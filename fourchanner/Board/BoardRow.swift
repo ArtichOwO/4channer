@@ -9,10 +9,15 @@ import SwiftUI
 
 struct BoardRow: View {
     let board : Board
+    let favorite : Bool
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
+                if (favorite) {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                }
                 Text(board.title)
                     .fontWeight(.bold)
             }
@@ -26,6 +31,9 @@ struct BoardRow: View {
 
 struct BoardRow_Previews: PreviewProvider {
     static var previews: some View {
-        BoardRow(board: Board(board: "p", title: "Preview", meta_description: "A preview board"))
+        BoardRow(
+            board: Board(board: "p", title: "Preview", meta_description: "A preview board"),
+            favorite: true
+        )
     }
 }
