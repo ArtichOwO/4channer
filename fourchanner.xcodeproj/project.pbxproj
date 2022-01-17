@@ -25,7 +25,7 @@
 		F7CAC99F27949AE5007F6369 /* ThreadRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadRow.swift; sourceTree = "<group>"; };
 		F7CAC9AA2794BEB9007F6369 /* ThreadDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetail.swift; sourceTree = "<group>"; };
 		F7FD932D27938D0F009B284E /* fourchanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fourchanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7FD933027938D0F009B284E /* fourchannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fourchannerApp.swift; sourceTree = "<group>"; };
+		F7FD933027938D0F009B284E /* fourchannerApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fourchannerApp.swift; sourceTree = "<group>"; };
 		F7FD933227938D0F009B284E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F7FD933427938D12009B284E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7FD933727938D12009B284E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
