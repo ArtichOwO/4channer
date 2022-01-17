@@ -49,6 +49,8 @@ struct ContentView: View {
                 }
             }
             
+            Text("Welcome on 4channer :D")
+            
             .navigationBarTitle("4channer")
             .navigationBarItems(trailing:
                 HStack {
