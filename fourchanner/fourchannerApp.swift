@@ -10,6 +10,14 @@ import SwiftUI
 
 let defaults = UserDefaults.standard
 
+let NSFWBoards = [
+    "s", "hc", "hm", "h",
+    "e", "u", "d", "y",
+    "t", "hr", "gif", "aco",
+    "r", "b", "bant", "r9k",
+    "pol", "soc", "s4s"
+]
+
 @main
 struct fourchannerApp: App {
     var body: some Scene {

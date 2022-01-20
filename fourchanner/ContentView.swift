@@ -11,6 +11,8 @@ struct ContentView: View {
     let boards: [Board]
     
     @AppStorage("favorites") var favorites : Data = saveStringArrayUserSetting([])
+    @AppStorage("hideNSFW") var hideNSFW : Bool = true
+    @State private var showingSetting = false
     
     var body: some View {
         NavigationView {
@@ -19,15 +21,17 @@ struct ContentView: View {
                     Section(header: Text("Favorites")) {
                         ForEach(loadStringArrayUserSetting(favorites), id: \.self) { favorite in
                             if let favoriteBoard = boards.first(where: { $0.board == favorite }) {
-                                NavigationLink(destination: BoardDetail(board: favoriteBoard)) {
-                                    BoardRow(board: favoriteBoard, favorite: true)
-                                    .contextMenu {
-                                        Button(action: {
-                                            self.favorites = saveStringArrayUserSetting(loadStringArrayUserSetting(favorites).filter { $0 != favoriteBoard.board })
-                                        }, label: {
-                                            Label("Unfavorite", systemImage: "star.slash.fill")
-                                                .foregroundColor(.yellow)
-                                        })
+                                if (!hideNSFW || !(NSFWBoards.contains(where: { $0 == favorite }))) {
+                                    NavigationLink(destination: BoardDetail(board: favoriteBoard)) {
+                                        BoardRow(board: favoriteBoard, favorite: true)
+                                        .contextMenu {
+                                            Button(action: {
+                                                self.favorites = saveStringArrayUserSetting(loadStringArrayUserSetting(favorites).filter { $0 != favoriteBoard.board })
+                                            }, label: {
+                                                Label("Unfavorite", systemImage: "star.slash.fill")
+                                                    .foregroundColor(.yellow)
+                                            })
+                                        }
                                     }
                                 }
                             }
@@ -37,12 +41,14 @@ struct ContentView: View {
                 
                 Section(header: Text("Boards")) {
                     ForEach(boards) { board in
-                        NavigationLink(destination: BoardDetail(board: board)) {
-                            // https://stackoverflow.com/questions/70159437/context-menu-not-updating-in-swiftui
-                            if (loadStringArrayUserSetting(favorites).contains(board.board)) {
-                                BoardRowContextMenu(board, favorite: true)
-                            } else {
-                                BoardRowContextMenu(board)
+                        if (!hideNSFW || !(NSFWBoards.contains(where: { $0 == board.board }))) {
+                            NavigationLink(destination: BoardDetail(board: board)) {
+                                // https://stackoverflow.com/questions/70159437/context-menu-not-updating-in-swiftui
+                                if (loadStringArrayUserSetting(favorites).contains(board.board)) {
+                                    BoardRowContextMenu(board, favorite: true)
+                                } else {
+                                    BoardRowContextMenu(board)
+                                }
                             }
                         }
                     }
@@ -56,6 +62,17 @@ struct ContentView: View {
                         Image(systemName: "leaf")
                             .foregroundColor(Color.green)
                             .imageScale(.small)
+                    }
+                
+                    Button(action: {
+                        showingSetting.toggle()
+                    }, label: {
+                        Image(systemName: "gearshape")
+                            .foregroundColor(Color.blue)
+                            .imageScale(.small)
+                    })
+                    .sheet(isPresented: $showingSetting) {
+                        SettingsView()
                     }
                 }
             )
