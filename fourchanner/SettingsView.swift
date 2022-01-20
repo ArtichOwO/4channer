@@ -13,10 +13,25 @@ struct SettingsView: View {
     
     var body: some View {
         VStack {
+            #if targetEnvironment(macCatalyst)
+            
+            Button(action: {
+                dismiss()
+            }, label: {
+                Label("Close", systemImage: "xmark")
+            })
+                .padding(.top)
             
             Text("Settings")
                 .font(.title)
-                .padding([.top, .leading, .trailing])
+            
+            #else
+            
+            Text("Settings")
+                .font(.title)
+                .padding(.top)
+            
+            #endif
             
             List {
                 HStack {
