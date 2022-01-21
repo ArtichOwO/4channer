@@ -36,17 +36,22 @@ struct ThreadRow: View {
             
             VStack {
                 if (((thread.tim ?? -1) > 0) && thread.ext != nil) {
-                    AsyncImage(url: URL(string: "https://i.4cdn.org/\(board.board)/\(thread.tim!)\(thread.ext!)")) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: ContentMode.fit)
-                            .padding(.top)
-                    } placeholder: {
-                        ProgressView()
-                            .frame(
-                                width: 30,
-                                height: 30
-                            )
+                    AsyncImage(url: URL(string: "https://i.4cdn.org/\(board.board)/\(thread.tim!)\(thread.ext!)")) { phase in
+                       if let image = phase.image {
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: ContentMode.fit)
+                                .padding(.top)
+                        } else if phase.error != nil {
+                            Text(verbatim: "Error loading file \(thread.tim!)\(thread.ext!)")
+                                .foregroundColor(.red)
+                        } else {
+                            ProgressView()
+                                .frame(
+                                    width: 30,
+                                    height: 30
+                                )
+                        }
                     }
                 }
                 
