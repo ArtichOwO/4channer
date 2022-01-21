@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftSoup
 
 struct BoardRow: View {
     let board : Board
@@ -22,7 +23,7 @@ struct BoardRow: View {
                     .fontWeight(.bold)
             }
             
-            htmlToText(board.meta_description)
+            Text((try? SwiftSoup.parseBodyFragment(board.meta_description).text()) ?? "error")
                 .fontWeight(.thin)
         }
         .padding(.vertical)

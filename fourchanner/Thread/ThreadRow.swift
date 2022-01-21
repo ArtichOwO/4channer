@@ -31,8 +31,10 @@ struct ThreadRow: View {
                 Text(thread.name ?? "[NO NAME]")
             }
             
-            htmlToText(thread.sub ?? "")
-                .fontWeight(.heavy)
+            if let html = thread.sub {
+                Text((try? SwiftSoup.parseBodyFragment(html).text()) ?? "error")
+                    .fontWeight(.heavy)
+            }
             
             VStack {
                 if (((thread.tim ?? -1) > 0) && thread.ext != nil) {
