@@ -86,7 +86,7 @@ struct ThreadRow: View {
                 Button(action: {
                     UIPasteboard.general.string = try? SwiftSoup.parseBodyFragment(html).text()
                 }, label: {
-                    Label("Copy text", systemImage: "doc.on.clipboard.fill")
+                    Label("Copy text", systemImage: "doc.on.clipboard")
                 })
             }
         }
