@@ -74,10 +74,63 @@ func load<T: Decodable>(_ url: String) throws -> T {
     }
 }
 
-func htmlToText(_ html: String) -> Text {
+func htmlToText(_ html: String, opNum : String = "0") -> Text {
     do {
-        let doc: Document = try SwiftSoup.parse(html.replacingOccurrences(of: "<br>", with: "/{newline}/"))
-        return Text(try doc.text().replacingOccurrences(of: "/{newline}/", with: "\n"))
+        let doc : Document = try SwiftSoup.parseBodyFragment(html)
+        var output = Text("")
+        
+        var nextLink : String? = nil
+        
+        for node in doc.body()!.getChildNodes() {
+            if (node is TextNode) {
+                output = output + Text(try node.outerHtml())
+            } else {
+                var nodeText : Text = Text("")
+                
+                switch (node.nodeName()) {
+                case "br":
+                    nodeText = Text("\n")
+                    break
+                case "wbr":
+                    break
+                case "a":
+                    if (node.getChildNodes().count == 0) {
+                        nextLink = try node.attr("href")
+                        break
+                    }
+                    
+                    if (try node.attr("class") == "quotelink") {
+                        let opText = String(try node.attr("href")) == "#p" + opNum ? " (OP)" : ""
+                        nodeText = Text(try (((node as? Element)?.text() ?? "[invalid link]") + opText)).foregroundColor(.red)
+                        nextLink = nil
+                        break
+                    }
+                    
+                    nodeText = Text(try ((node as? Element)?.text() ?? "[invalid link]")).foregroundColor(.blue)
+                    break
+                case "span":
+                    if (try node.attr("class") == "quote") {
+                        nodeText = Text(try ((node as? Element)?.text() ?? "[invalid quote]")).foregroundColor(.green)
+                    }
+                    break
+                case "pre":
+                    print(html)
+                    for codeNode : Node in node.getChildNodes() {
+                        if (codeNode.nodeName() == "br") {
+                            nodeText = nodeText + Text("\n")
+                        } else {
+                            nodeText = nodeText + Text(try codeNode.outerHtml()).font(Font.custom("JetBrainsMono-Regular", size: 12)).foregroundColor(.yellow)
+                        }
+                    }
+                    break
+                default:
+                    nodeText = Text(try node.outerHtml()).foregroundColor(.red)
+                }
+                
+                output = output + nodeText
+            }
+        }
+        return output
     } catch Exception.Error(let _, let message) {
         return Text(message)
     } catch {

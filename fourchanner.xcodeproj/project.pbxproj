@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F70E05BA279B558200054DA8 /* JetBrainsMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F70E05B9279B558200054DA8 /* JetBrainsMono-Regular.ttf */; };
 		F7CAC99A27947550007F6369 /* BoardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CAC99927947550007F6369 /* BoardDetail.swift */; };
 		F7CAC9A027949AE5007F6369 /* ThreadRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CAC99F27949AE5007F6369 /* ThreadRow.swift */; };
 		F7CAC9A42794AD71007F6369 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = F7CAC9A32794AD71007F6369 /* SwiftSoup */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F70E05B9279B558200054DA8 /* JetBrainsMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JetBrainsMono-Regular.ttf"; path = "../../../../Downloads/JetBrainsMono-2.242/fonts/ttf/JetBrainsMono-Regular.ttf"; sourceTree = "<group>"; };
 		F7CAC99927947550007F6369 /* BoardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetail.swift; sourceTree = "<group>"; };
 		F7CAC99F27949AE5007F6369 /* ThreadRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadRow.swift; sourceTree = "<group>"; };
 		F7CAC9AA2794BEB9007F6369 /* ThreadDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetail.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				F7FD933F279390BB009B284E /* Info.plist */,
 				F7FD933E27938D56009B284E /* fourchanner.entitlements */,
 				F7FD933027938D0F009B284E /* fourchannerApp.swift */,
+				F70E05B9279B558200054DA8 /* JetBrainsMono-Regular.ttf */,
 				F7FD933227938D0F009B284E /* ContentView.swift */,
 				F7FD933427938D12009B284E /* Assets.xcassets */,
 				F7FD933627938D12009B284E /* Preview Content */,
@@ -178,6 +181,7 @@
 			files = (
 				F7FD933827938D12009B284E /* Preview Assets.xcassets in Resources */,
 				F7FD933527938D12009B284E /* Assets.xcassets in Resources */,
+				F70E05BA279B558200054DA8 /* JetBrainsMono-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
