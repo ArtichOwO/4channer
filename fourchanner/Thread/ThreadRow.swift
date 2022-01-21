@@ -89,6 +89,12 @@ struct ThreadRow: View {
                     Label("Copy text", systemImage: "doc.on.clipboard")
                 })
             }
+            
+            Button(action: {
+                UIPasteboard.general.string = "https://boards.4channel.org/\(board.board)/thread/\(thread.resto == 0 ? thread.no : thread.resto)#p\(thread.no)"
+            }, label: {
+                Label("Copy link", systemImage: "link")
+            })
         }
     }
     
