@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WrappingHStack
+import SwiftSoup
 
 struct ThreadRow: View {
     let board : Board
@@ -73,6 +74,14 @@ struct ThreadRow: View {
                         nil, nil, nil)
                 }, label: {
                     Label("Download image", systemImage: "square.and.arrow.down")
+                })
+            }
+            
+            if let html = thread.com {
+                Button(action: {
+                    UIPasteboard.general.string = try? SwiftSoup.parseBodyFragment(html).text()
+                }, label: {
+                    Label("Copy text", systemImage: "doc.on.clipboard.fill")
                 })
             }
         }
