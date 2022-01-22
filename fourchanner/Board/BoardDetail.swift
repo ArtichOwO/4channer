@@ -10,38 +10,12 @@ import SwiftUI
 struct BoardDetail: View {
     let board : Board
     
+    @State var timeElapsed = 0
+    @State var threads : [Page]? = nil
+    
     var body: some View {
         TabView {
-            ForEach({ () -> [Page] in
-                var errorPage = Page(
-                    page: 0,
-                    threads: [Thread(
-                        no: 404,
-                        now: "00/00/00(---)00:00:00",
-                        sticky: 1,
-                        name: "Oops",
-                        sub: nil,
-                        com: nil,
-                        tim: nil,
-                        replies: 123456,
-                        ext: nil,
-                        capcode: "",
-                        resto: 0
-                    )]
-                )
-                
-                do {
-                    return try load("https://a.4cdn.org/\(board.board)/catalog.json")
-                } catch fourchannerError.URLNotFound(let url) {
-                    errorPage.threads[0].sub = "URL \(url) not found :))"
-                    return [errorPage]
-                } catch fourchannerError.DataNotRetrieved(let url) {
-                    errorPage.threads[0].sub = "Couldn't retrieve data from \(url)"
-                    return [errorPage]
-                } catch {
-                    fatalError()
-                }
-            }()) { page in
+            ForEach(threads ?? loadThreads()) { page in
                 List(page.threads) { thread in
                     NavigationLink(destination: ThreadDetail(
                         board: board,
@@ -60,6 +34,42 @@ struct BoardDetail: View {
         )
         .tabViewStyle(PageTabViewStyle())
         .navigationBarTitle("/\(board.board)/ - \(board.title)", displayMode: .inline)
+        .navigationBarItems(trailing:
+            ReloadButton(callback: {
+                threads = loadThreads()
+            })
+        )
+    }
+    
+    private func loadThreads() -> [Page] {
+        var errorPage = Page(
+            page: 0,
+            threads: [Thread(
+                no: 404,
+                now: "00/00/00(---)00:00:00",
+                sticky: 1,
+                name: "Oops",
+                sub: nil,
+                com: nil,
+                tim: nil,
+                replies: 123456,
+                ext: nil,
+                capcode: "",
+                resto: 0
+            )]
+        )
+        
+        do {
+            return try load("https://a.4cdn.org/\(board.board)/catalog.json")
+        } catch fourchannerError.URLNotFound(let url) {
+            errorPage.threads[0].sub = "URL \(url) not found :))"
+            return [errorPage]
+        } catch fourchannerError.DataNotRetrieved(let url) {
+            errorPage.threads[0].sub = "Couldn't retrieve data from \(url)"
+            return [errorPage]
+        } catch {
+            fatalError()
+        }
     }
 }
 

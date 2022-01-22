@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F70E05BA279B558200054DA8 /* JetBrainsMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F70E05B9279B558200054DA8 /* JetBrainsMono-Regular.ttf */; };
+		F7BFFFFD279C42BF008E3AD4 /* ReloadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BFFFFC279C42BF008E3AD4 /* ReloadButton.swift */; };
 		F7CAC99A27947550007F6369 /* BoardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CAC99927947550007F6369 /* BoardDetail.swift */; };
 		F7CAC9A027949AE5007F6369 /* ThreadRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CAC99F27949AE5007F6369 /* ThreadRow.swift */; };
 		F7CAC9A42794AD71007F6369 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = F7CAC9A32794AD71007F6369 /* SwiftSoup */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		F70E05B9279B558200054DA8 /* JetBrainsMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JetBrainsMono-Regular.ttf"; path = "../../../../Downloads/JetBrainsMono-2.242/fonts/ttf/JetBrainsMono-Regular.ttf"; sourceTree = "<group>"; };
+		F7BFFFFC279C42BF008E3AD4 /* ReloadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadButton.swift; sourceTree = "<group>"; };
 		F7CAC99927947550007F6369 /* BoardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetail.swift; sourceTree = "<group>"; };
 		F7CAC99F27949AE5007F6369 /* ThreadRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadRow.swift; sourceTree = "<group>"; };
 		F7CAC9AA2794BEB9007F6369 /* ThreadDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDetail.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		F7FD932F27938D0F009B284E /* fourchanner */ = {
 			isa = PBXGroup;
 			children = (
+				F7BFFFFC279C42BF008E3AD4 /* ReloadButton.swift */,
 				F7CAC99E27949AD0007F6369 /* Thread */,
 				F7FD934027939503009B284E /* Board */,
 				F7FD933F279390BB009B284E /* Info.plist */,
@@ -198,6 +201,7 @@
 				F7FD934427939A66009B284E /* BoardRow.swift in Sources */,
 				F7CAC9A027949AE5007F6369 /* ThreadRow.swift in Sources */,
 				F7FD933327938D0F009B284E /* ContentView.swift in Sources */,
+				F7BFFFFD279C42BF008E3AD4 /* ReloadButton.swift in Sources */,
 				F7CAC99A27947550007F6369 /* BoardDetail.swift in Sources */,
 				F7FD933127938D0F009B284E /* fourchannerApp.swift in Sources */,
 			);

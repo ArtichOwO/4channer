@@ -11,38 +11,49 @@ struct ThreadDetail: View {
     let board : Board
     let threadno : Int
     
+    @State var posts : [Thread]? = nil
+    @State var timeElapsed = 0
+    
     var body: some View {
         List {
-            ForEach ({ () -> [Thread] in
-                var errorThread = Thread(
-                    no: 404,
-                    now: "00/00/00(---)00:00:00",
-                    sticky: 1,
-                    name: "Oops",
-                    sub: nil,
-                    com: nil,
-                    tim: nil,
-                    replies: 123456,
-                    ext: nil,
-                    capcode: "",
-                    resto: 0
-                )
-                
-                do {
-                    let posts : PostList =  try load("https://a.4cdn.org/\(board.board)/thread/\(threadno).json")
-                    return posts.posts
-                } catch fourchannerError.URLNotFound(let url) {
-                    errorThread.sub = "URL \(url) not found :))"
-                    return [errorThread]
-                } catch fourchannerError.DataNotRetrieved(let url) {
-                    errorThread.sub = "Couldn't retrieve data from \(url)"
-                    return [errorThread]
-                } catch {
-                    fatalError()
-                }
-            }()) { post in
+            ForEach(posts ?? loadPosts()) { post in
                 ThreadRow(board: board, thread: post)
             }
+            
+            .navigationBarItems(trailing:
+                ReloadButton(callback: {
+                    posts = loadPosts()
+                })
+            )
+        }
+    }
+    
+    private func loadPosts() -> [Thread] {
+        var errorThread = Thread(
+            no: 404,
+            now: "00/00/00(---)00:00:00",
+            sticky: 1,
+            name: "Oops",
+            sub: nil,
+            com: nil,
+            tim: nil,
+            replies: 123456,
+            ext: nil,
+            capcode: "",
+            resto: 0
+        )
+        
+        do {
+            let posts : PostList =  try load("https://a.4cdn.org/\(board.board)/thread/\(threadno).json")
+            return posts.posts
+        } catch fourchannerError.URLNotFound(let url) {
+            errorThread.sub = "URL \(url) not found :))"
+            return [errorThread]
+        } catch fourchannerError.DataNotRetrieved(let url) {
+            errorThread.sub = "Couldn't retrieve data from \(url)"
+            return [errorThread]
+        } catch {
+            fatalError()
         }
     }
 }
