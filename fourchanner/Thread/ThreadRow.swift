@@ -58,6 +58,7 @@ struct ThreadRow: View {
                 }
                 
                 htmlToText(thread.com ?? "", opNum: String(thread.resto))
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.top)
                 
                 if let replies = thread.replies {
