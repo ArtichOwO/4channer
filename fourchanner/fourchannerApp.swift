@@ -124,6 +124,10 @@ func htmlToText(_ html: String, opNum : String = "0") -> Text {
                         }
                     }
                     break
+                case "i":
+                    nodeText = Text(try (node as? Element)?.text() ?? "[invalid ital]")
+                        .italic()
+                    break
                 default:
                     nodeText = Text(try node.outerHtml().htmlUnescape()).foregroundColor(.red)
                 }
