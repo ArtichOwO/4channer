@@ -107,7 +107,12 @@ func htmlToText(_ html: String, opNum : String = "0") -> Text {
                         break
                     }
                     
-                    nodeText = Text(try ((node as? Element)?.text() ?? "[invalid link]")).foregroundColor(.blue)
+                    //nodeText = Link(try ((node as? Element)?.text() ?? "[invalid link]"), destination: URL(string: try node.attr("href"))!)
+                    
+                    let urlText = try ((node as? Element)?.text() ?? "[invalid link]")
+                    let urlAddress = try node.attr("href")
+                    
+                    nodeText = Text(.init("[\(urlText)](\(urlAddress))"))
                     break
                 case "span":
                     if (try node.attr("class") == "quote") {
