@@ -23,7 +23,7 @@ struct BoardRow: View {
                     .fontWeight(.bold)
             }
             
-            Text((try? SwiftSoup.parseBodyFragment(board.meta_description).text()) ?? "error")
+            Text(board.meta_description.htmlUnescape())
                 .fontWeight(.thin)
         }
         .padding(.vertical)

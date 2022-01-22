@@ -8,6 +8,7 @@
 import SwiftUI
 import WrappingHStack
 import SwiftSoup
+import HTMLEntities
 
 struct ThreadRow: View {
     let board : Board
@@ -32,7 +33,7 @@ struct ThreadRow: View {
             }
             
             if let html = thread.sub {
-                Text((try? SwiftSoup.parseBodyFragment(html).text()) ?? "error")
+                Text(html.htmlUnescape())
                     .fontWeight(.heavy)
             }
             
@@ -87,7 +88,7 @@ struct ThreadRow: View {
             
             if let html = thread.com {
                 Button(action: {
-                    UIPasteboard.general.string = try? SwiftSoup.parseBodyFragment(html).text()
+                    UIPasteboard.general.string = html.htmlUnescape()
                 }, label: {
                     Label("Copy text", systemImage: "doc.on.clipboard")
                 })

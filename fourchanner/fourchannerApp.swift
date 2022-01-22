@@ -6,6 +6,7 @@
 //
 
 import SwiftSoup
+import HTMLEntities
 import SwiftUI
 
 let defaults = UserDefaults.standard
@@ -83,7 +84,7 @@ func htmlToText(_ html: String, opNum : String = "0") -> Text {
         
         for node in doc.body()!.getChildNodes() {
             if (node is TextNode) {
-                output = output + Text(try node.outerHtml())
+                output = output + Text((try node.outerHtml()).htmlUnescape())
             } else {
                 var nodeText : Text = Text("")
                 
@@ -119,12 +120,12 @@ func htmlToText(_ html: String, opNum : String = "0") -> Text {
                         if (codeNode.nodeName() == "br") {
                             nodeText = nodeText + Text("\n")
                         } else {
-                            nodeText = nodeText + Text(try codeNode.outerHtml()).font(Font.custom("JetBrainsMono-Regular", size: 12)).foregroundColor(.yellow)
+                            nodeText = nodeText + Text(try codeNode.outerHtml().htmlUnescape()).font(Font.custom("JetBrainsMono-Regular", size: 12)).foregroundColor(.yellow)
                         }
                     }
                     break
                 default:
-                    nodeText = Text(try node.outerHtml()).foregroundColor(.red)
+                    nodeText = Text(try node.outerHtml().htmlUnescape()).foregroundColor(.red)
                 }
                 
                 output = output + nodeText

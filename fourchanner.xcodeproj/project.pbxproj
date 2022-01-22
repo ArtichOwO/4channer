@@ -15,6 +15,7 @@
 		F7CAC9A72794BC46007F6369 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = F7CAC9A62794BC46007F6369 /* WrappingHStack */; };
 		F7CAC9AB2794BEB9007F6369 /* ThreadDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CAC9AA2794BEB9007F6369 /* ThreadDetail.swift */; };
 		F7DC242B2799B24F00838684 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC242A2799B24F00838684 /* SettingsView.swift */; };
+		F7E070C2279CB958000B36E2 /* HTMLEntities in Frameworks */ = {isa = PBXBuildFile; productRef = F7E070C1279CB958000B36E2 /* HTMLEntities */; };
 		F7FD933127938D0F009B284E /* fourchannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD933027938D0F009B284E /* fourchannerApp.swift */; };
 		F7FD933327938D0F009B284E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FD933227938D0F009B284E /* ContentView.swift */; };
 		F7FD933527938D12009B284E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FD933427938D12009B284E /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 			files = (
 				F7CAC9A72794BC46007F6369 /* WrappingHStack in Frameworks */,
 				F7CAC9A42794AD71007F6369 /* SwiftSoup in Frameworks */,
+				F7E070C2279CB958000B36E2 /* HTMLEntities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +137,7 @@
 			packageProductDependencies = (
 				F7CAC9A32794AD71007F6369 /* SwiftSoup */,
 				F7CAC9A62794BC46007F6369 /* WrappingHStack */,
+				F7E070C1279CB958000B36E2 /* HTMLEntities */,
 			);
 			productName = fourchanner;
 			productReference = F7FD932D27938D0F009B284E /* fourchanner.app */;
@@ -167,6 +170,7 @@
 			packageReferences = (
 				F7CAC9A22794AD71007F6369 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				F7CAC9A52794BC46007F6369 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
+				F7E070C0279CB958000B36E2 /* XCRemoteSwiftPackageReference "swift-html-entities" */,
 			);
 			productRefGroup = F7FD932E27938D0F009B284E /* Products */;
 			projectDirPath = "";
@@ -438,6 +442,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		F7E070C0279CB958000B36E2 /* XCRemoteSwiftPackageReference "swift-html-entities" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/swift-html-entities";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -450,6 +462,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7CAC9A52794BC46007F6369 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
 			productName = WrappingHStack;
+		};
+		F7E070C1279CB958000B36E2 /* HTMLEntities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7E070C0279CB958000B36E2 /* XCRemoteSwiftPackageReference "swift-html-entities" */;
+			productName = HTMLEntities;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
