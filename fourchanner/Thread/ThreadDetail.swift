@@ -19,13 +19,12 @@ struct ThreadDetail: View {
             ForEach(posts ?? loadPosts()) { post in
                 ThreadRow(board: board, thread: post)
             }
-            
-            .navigationBarItems(trailing:
-                ReloadButton(callback: {
-                    posts = loadPosts()
-                })
-            )
         }
+        .navigationBarItems(trailing:
+            ReloadButton(callback: {
+                posts = loadPosts()
+            })
+        )
     }
     
     private func loadPosts() -> [Thread] {
