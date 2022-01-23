@@ -47,6 +47,7 @@ struct ThreadRow: View {
                                 .padding(.top)
                         } else if phase.error != nil {
                             Text(verbatim: "Error loading file \(thread.tim!)\(thread.ext!)")
+                                .fixedSize(horizontal: false, vertical: true)
                                 .foregroundColor(.red)
                         } else {
                             ProgressView()
